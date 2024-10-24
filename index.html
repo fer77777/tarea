@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Hamburguesa en Cascada - Tienda de Estilo</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #ff6347;
+            color: white;
+            padding: 20px 0;
+            display: flex; /* Usar flexbox */
+            align-items: center; /* Centrar verticalmente */
+            justify-content: center; /* Centrar horizontalmente */
+            position: relative; /* Necesario para posicionar el botón de hamburguesa */
+        }
+
+        /* Estilos del menú de hamburguesa */
+        .menu {
+            display: none; /* Ocultar el menú por defecto */
+            background-color: #333;
+            position: absolute; /* Posición absoluta */
+            top: 60px; /* Debajo del header */
+            left: 0;
+            width: 100%; /* Ancho completo */
+            z-index: 1000; /* Asegurarse de que esté por encima */
+        }
+
+        .menu ul {
+            list-style-type: none; /* Sin viñetas */
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            position: relative; /* Para los submenús */
+        }
+
+        .menu ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        .menu ul li a:hover {
+            background-color: #ff6347; /* Color al pasar el ratón */
+        }
+
+        /* Estilos del submenú */
+        .submenu {
+            display: none; /* Ocultar submenús por defecto */
+            position: absolute; /* Para que aparezcan al lado */
+            top: 0;
+            left: 100%; /* Desplazarse a la derecha del menú padre */
+            background-color: #444; /* Fondo del submenú */
+            z-index: 1000;
+        }
+
+        .menu ul li:hover .submenu {
+            display: block; /* Mostrar submenú al pasar el ratón */
+        }
+
+        /* Estilos del botón de hamburguesa */
+        .hamburger {
+            position: absolute; /* Posicionar en el lado izquierdo */
+            left: 20px; /* Espacio desde la izquierda */
+            cursor: pointer;
+            padding: 10px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            font-size: 24px;
+        }
+
+        /* Mostrar el menú al hacer clic */
+        .menu.active {
+            display: block; /* Mostrar menú si tiene clase "active" */
+        }
+
+        section {
+            padding: 50px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* Estilos de los productos */
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            width: 200px; /* Ancho fijo para los productos */
+        }
+
+        .product img {
+            width: 100%; /* Imagen completa dentro del marco */
+            height: auto; /* Mantener proporciones */
+            border-radius: 5px;
+        }
+
+        .buy-button {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .buy-button:hover {
+            background-color: #e5533d; /* Color al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <h1 style="margin: 0;">Venta de Hamburguesas</h1> <!-- Título centrado -->
+    </header>
+
+    <nav class="menu" id="menu">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li>
+                <a href="#productos">Productos</a>
+                <ul class="submenu">
+                    <li><a href="#nuevos">Nuevos Productos</a></li>
+                    <li><a href="#destacados">Destacados</a></li>
+                    <li><a href="#ofertas">Ofertas</a></li>
+                </ul>
+            </li>
+            <li><a href="#categorias">Categorías</a></li>
+            <li><a href="#favoritos">Favoritos</a></li>
+            <li><a href="#perfil">Perfil</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section id="productos">
+        <h2>Productos Destacados</h2>
+        <div class="product-container">
+            <!-- Product 1 -->
+            <div class="product">
+                <img src="218401.avif" alt="Hamburguesa Clásica">
+                <h3>Hamburguesa Clásica</h3>
+                <p>Deliciosa hamburguesa de carne de res, lechuga, tomate y mayonesa.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 2 -->
+            <div class="product">
+                <img src="74e1a2dfe688f08eedf86a3711c8e4fb.avif" alt="Hamburguesa BBQ">
+                <h3>Hamburguesa BBQ</h3>
+                <p>Hamburguesa de carne de res con salsa BBQ, cebolla caramelizada y queso cheddar.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 3 -->
+            <div class="product">
+                <img src="hamburguesa-de-garbanzos-casera-receta.jpg" alt="Hamburguesa Vegetariana">
+                <h3>Hamburguesa Vegetariana</h3>
+                <p>Deliciosa hamburguesa de garbanzos con aguacate, lechuga y salsa de yogur.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 4 -->
+            <div class="product">
+                <img src="main-header.avif" alt="Hamburguesa Picante">
+                <h3>Hamburguesa Picante</h3>
+                <p>Hamburguesa de carne de res con jalapeños, queso pepper jack y salsa picante.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 5 -->
+            <div class="product">
+                <img src="hamburguesa-huevo.jpg" alt="Hamburguesa con Huevo">
+                <h3>Hamburguesa con Huevo</h3>
+                <p>Hamburguesa de carne de res con huevo frito, lechuga y mayonesa.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 6 -->
+            <div class="product">
+                <img src="31621f64ec8fd1835f74449b071a8889_hamburguesa_con_champiñones_1.jpg" alt="Hamburguesa con Champiñones">
+                <h3>Hamburguesa con Champiñones</h3>
+                <p>Hamburguesa de carne de res con champiñones salteados y queso suizo.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 7 -->
+            <div class="product">
+                <img src="hamburguesa-queso-receta.jpg" alt="Hamburguesa con Queso">
+                <h3>Hamburguesa con Queso</h3>
+                <p>Hamburguesa de carne de res con queso cheddar derretido y lechuga.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 8 -->
+            <div class="product">
+                <img src="images.jpg" alt="Hamburguesa Doble">
+                <h3>Hamburguesa Doble</h3>
+                <p>Dos jugosas hamburguesas de carne de res, lechuga, tomate y mayonesa.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 9 -->
+            <div class="product">
+                <img src="images (1).jpg" alt="Hamburguesa con Tocino">
+                <h3>Hamburguesa con Tocino</h3>
+                <p>Hamburguesa de carne de res con crujiente tocino y salsa especial.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+            <!-- Product 10 -->
+            <div class="product">
+                <img src="maxresdefault.jpg" alt="Hamburguesa con Guacamole">
+                <h3>Hamburguesa con Guacamole</h3>
+                <p>Hamburguesa de carne de res con guacamole, lechuga y pico de gallo.</p>
+                <button class="buy-button">Comprar</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tienda de Estilo - Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("active"); // Alternar la clase "active"
+        }
+    </script>
+
+</body>
+</html>
